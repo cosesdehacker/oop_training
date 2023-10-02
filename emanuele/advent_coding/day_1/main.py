@@ -40,9 +40,26 @@ def get_most_caloric_elf(file):
     most_caloric_elf = total_calories_by_elf.index(max_calories)+1
     return most_caloric_elf, max_calories
 
+def get_top_three_calories(file):
+    total_calories_by_elf = sum_values_in_list(file)
+    total_calories_by_elf.sort()
+    top_three_calories = 0
+    i = 0
+    while i in range(0, 3):
+        top_three_calories += total_calories_by_elf[i]
+        i = i+1
+    return top_three_calories
+
 
 if __name__ == '__main__':
-    most_caloric_elf, max_calories = get_most_caloric_elf(file="input.txt")
-    print(f"Most caloric elf is elf number {most_caloric_elf}, with a total of {max_calories}.\n")
-    print("Bon appetit!")
+    file = "input.txt"
+    #part 1
+    print("PART 1\n")
+    most_caloric_elf, max_calories = get_most_caloric_elf(file)
+    print(f"Most caloric elf is elf number {most_caloric_elf}, with a total of {max_calories}.")
+    print("Bon appetit!\n")
+    #part 2
+    print("PART 2\n")
+    top_three_calories = get_top_three_calories(file)
+    print(f"Three most caloric elfs carry a total of {top_three_calories} calories <3")
 
