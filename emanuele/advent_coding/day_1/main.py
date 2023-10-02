@@ -40,9 +40,10 @@ def get_most_caloric_elf(file):
     most_caloric_elf = total_calories_by_elf.index(max_calories)+1
     return most_caloric_elf, max_calories
 
+
 def get_top_three_calories(file):
     total_calories_by_elf = sum_values_in_list(file)
-    total_calories_by_elf.sort()
+    total_calories_by_elf.sort(reverse=True)
     top_three_calories = 0
     i = 0
     while i in range(0, 3):
