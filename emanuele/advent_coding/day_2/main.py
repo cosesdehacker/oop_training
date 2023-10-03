@@ -11,55 +11,41 @@ score for a single round = sum of:
 def read_to_list(file):
     input_data = open(file, "r").read()
     input_data_list = input_data.split("\n")
-    print("This is the real input data:")
-    print(input_data_list)
     opponent_moves_list = []
     own_moves_list = []
-    for el in input_data_list:
-        el.replace(' ', '')
-        #print("el1")
-        #print(el[1])
+    i = 0
+    while i < len(input_data_list)-1:
+        el = input_data_list[i]
         opponent_moves_list.append(el[0])
         own_moves_list.append(el[2])
-        moves_dict = dict(zip(opponent_moves_list, own_moves_list))
-    print(moves_dict)
-    return moves_dict
-
-def test_read_to_list(file):
-    print("This is my fake input data, which looks the fucking same:")
-    input_data_list = ['B Z', 'A X', 'B Z']
-    opponent_moves_list = []
-    own_moves_list = []
-    for el in input_data_list:
-        el.replace(' ', '')
-        #print("el1")
-        #print(el[1])
-        opponent_moves_list.append(el[0])
-        own_moves_list.append(el[2])
-        moves_dict = dict(zip(opponent_moves_list, own_moves_list))
-    print(moves_dict)
-    return moves_dict
+        i = i+1
+    moves_dict = list(zip(opponent_moves_list, own_moves_list))
+    return moves_dict, own_moves_list
 
 def single_round_result(file):
-    moves_dict = read_to_list(file)
-    shape_score_dict = {'A': 1, 'B': 2, 'C': 3, 'X': 1, 'Y': 2, 'Z': 3}
-    standard_shapes = {'A': 'X', 'B': 'Y', 'C': 'Z'}
-    win_options = {'C': 'A', 'A': 'B', 'B': 'C'}
+    moves_dict, own_moves_list = read_to_list(file)
+
+    shape_score_dict = {'X': 1, 'Y': 2, 'Z': 3}
+    win_options = {'C': 'X', 'A': 'Y', 'B': 'Z'}
     #0 if you lost, 3 if the round was a draw, and 6 if you won
+    shape_score = 0
+    for el in own_moves_list:
+        shape_score = shape_score + shape_score_dict[el]
+
+
 
 
 if __name__ == '__main__':
     file = "input.txt"
-    #read_to_list(file)
-    test_read_to_list(file)
-    #single_round_result(file)
+    read_to_list(file)
+    single_round_result(file)
     #part 1
-    print("PART 1\n")
+    '''print("PART 1\n")
 
     print(f"Total score would be ")
 
     #part 2
     print("PART 2\n")
 
-    print(f"")
+    print(f"")'''
 
