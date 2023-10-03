@@ -8,6 +8,7 @@ score for a single round = sum of:
 - the score for the outcome of the round (0 if you lost, 3 if the round was a draw, and 6 if you won
 '''
 
+
 def read_to_list(file):
     input_data = open(file, "r").read()
     input_data_list = input_data.split("\n")
@@ -21,6 +22,7 @@ def read_to_list(file):
         i = i+1
     moves_set = list(zip(opponent_moves_list, own_moves_list))
     return moves_set, own_moves_list
+
 
 def final_result(file):
     shape_score_dict = {'X': 1, 'Y': 2, 'Z': 3}
