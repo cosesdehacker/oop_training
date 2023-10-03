@@ -28,12 +28,19 @@ def final_result(file):
     shape_score = 0
     match_score = 0
     moves_set, own_moves_list = read_to_list(file)
-    for el in own_moves_list:
-        shape_score = shape_score + shape_score_dict[el]
+    '''for el in own_moves_list:
+        shape_score = shape_score + shape_score_dict[el]'''
+    print(moves_set)
+    moves_set = [('B', 'Z'), ('A', 'X'), ('B', 'Z'), ('A', 'A')]
+    print(moves_set)
     for el in moves_set:
+        print(f"el is {el}")
+        print(el[0])
+        print(el[1])
         if el in win_options:
             match_score = match_score + 6
         elif el[0] == el[1]:
+            print(f"el is {el}")
             match_score = match_score + 3
     total_score = shape_score + match_score
     return total_score
