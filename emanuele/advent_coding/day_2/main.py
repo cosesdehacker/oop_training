@@ -42,6 +42,7 @@ def final_result(file):
         if el in win_options:
             match_score = match_score + 6
         elif el[0] == el[1]:
+            print(f"I got into the elif with {el}")
             print(f"el is {el}")
             match_score = match_score + 3
     total_score = shape_score + match_score
