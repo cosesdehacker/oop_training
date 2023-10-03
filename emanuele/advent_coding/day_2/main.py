@@ -19,32 +19,35 @@ def read_to_list(file):
         opponent_moves_list.append(el[0])
         own_moves_list.append(el[2])
         i = i+1
-    moves_dict = list(zip(opponent_moves_list, own_moves_list))
-    return moves_dict, own_moves_list
+    moves_set = list(zip(opponent_moves_list, own_moves_list))
+    return moves_set, own_moves_list
 
-def single_round_result(file):
-    moves_dict, own_moves_list = read_to_list(file)
-
+def final_result(file):
     shape_score_dict = {'X': 1, 'Y': 2, 'Z': 3}
-    win_options = {'C': 'X', 'A': 'Y', 'B': 'Z'}
-    #0 if you lost, 3 if the round was a draw, and 6 if you won
+    win_options = {('C', 'X'), ('A', 'Y'), ('B', 'Z')}
     shape_score = 0
+    match_score = 0
+    moves_set, own_moves_list = read_to_list(file)
     for el in own_moves_list:
         shape_score = shape_score + shape_score_dict[el]
-
-
+    for el in moves_set:
+        if el in win_options:
+            match_score = match_score + 6
+        elif el[0] == el[1]:
+            match_score = match_score + 3
+    total_score = shape_score + match_score
+    return total_score
 
 
 if __name__ == '__main__':
     file = "input.txt"
     read_to_list(file)
-    single_round_result(file)
+    total_score = final_result(file)
     #part 1
-    '''print("PART 1\n")
+    print("PART 1\n")
+    print(f"Total score would be {total_score}")
 
-    print(f"Total score would be ")
-
-    #part 2
+    ''''#part 2
     print("PART 2\n")
 
     print(f"")'''
